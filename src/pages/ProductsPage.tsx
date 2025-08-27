@@ -18,7 +18,7 @@ import dryDates from '../assets/products/Dry Dates.png';
 import fennelSeeds from '../assets/products/Fennel Seeds.png';
 import fenugreekSeeds from '../assets/products/Fenugreek Seeds.png';
 import fig from '../assets/products/Fig.png';
-import foxtailMillet from '../assets/products/Foxtail Millet.png';
+import foxtailMillet from '../assets/products/foxtail millet.png';
 import greenRaisinsType1 from '../assets/products/Green Raisins (Type 1).png';
 import kasuriMethi from '../assets/products/Kasuri Methi.png';
 import kodoMillet from '../assets/products/Kodo Millet.png';
