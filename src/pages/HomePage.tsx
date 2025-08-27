@@ -13,7 +13,7 @@ import turmeric from '../assets/products/Turmeric Stick.png';
 import cardamom from '../assets/products/Wild Cardamom.png';
 import cinnamon from '../assets/products/Singapore Cinnamon.png';
 import saffron from '../assets/products/Saffron.png';
-import heroBg from "../assets/home.png";
+import heroBg from '../assets/home.png';
 import mobileHeroBg from "../assets/mobile.png";
 import WhyChooseSection from "../components/bento-grid"
 import gift1 from "../assets/Gifts_Website/1.jpeg"
@@ -32,7 +32,6 @@ import homebg from "../assets/home.jpeg"
 import gift from "../assets/gift-box.jpg"
 import date from "../assets/dates.jpg"
 import pistachios from "../assets/pistachios.jpg"
-import gif1 from "../assets/Gifts_website/1.jpeg"
 
 // Button Component (No changes, included for completeness)
 const Button = ({ children, className = "", variant = "default", size = "md", onClick, ...props }) => {
@@ -566,7 +565,7 @@ const HomePage = () => {
       <div class="flex flex-wrap gap-4 sm:gap-6 justify-center lg:justify-start pt-4">
         <div class="relative w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 rounded-[20px] border-1 sm:border-2 border-[#ce8a4c] overflow-hidden shadow-xl bg-white flex items-center justify-center">
           <img
-            src={gif1}
+            src={gift1}
             alt="Gift Boxes"
             class="w-full h-full object-cover"
           />
