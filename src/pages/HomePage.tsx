@@ -559,7 +559,7 @@ const HomePage = () => {
         <span class="block">Global Foods</span>
       </h1>
       <p class="text-base sm:text-lg md:text-xl text-white font-medium max-w-xl leading-relaxed font-sans">
-        Nuts for your desk! <br class="hidden sm:block" />
+        Nuts for your desk! 
         Gifts for their heart!
       </p>
       <div class="flex flex-wrap gap-4 sm:gap-6 justify-center lg:justify-start pt-4">
