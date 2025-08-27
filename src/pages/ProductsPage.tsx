@@ -12,7 +12,7 @@ import blackRaisinsWithSeeds from '../assets/products/Black Raisins with Seed.pn
 import brokenCashews from '../assets/products/Broken Cashews.png';
 import cakeSeeds from '../assets/products/Cake Seeds.png';
 import cherry from '../assets/products/Cherry.png';
-import chiaSeed from '../assets/products/Chia Seed.png'; // fixed variable name
+import chiaSeed from '../assets/products/Chia seed.png'; // fixed variable name
 import driedAmla from '../assets/products/Dried Amla.png';
 import dryDates from '../assets/products/Dry Dates.png';
 import fennelSeeds from '../assets/products/Fennel Seeds.png';
