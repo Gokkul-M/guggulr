@@ -7,14 +7,12 @@ import almonds from '../assets/products/Almonds.png';
 import cashew from '../assets/products/Whole Cashews.png';
 import mixed from '../assets/products/Mixed Dry fruits.png';
 import walnut from '../assets/products/Walnut (kernels).png';
-import pisco from '../assets/products/pistachios.png';
+import pisco from '../assets/products/Pistachios.png';
 import pepper from '../assets/products/Pepper.png';
 import turmeric from '../assets/products/Turmeric Stick.png';
 import cardamom from '../assets/products/Wild Cardamom.png';
 import cinnamon from '../assets/products/Singapore Cinnamon.png';
 import saffron from '../assets/products/Saffron.png';
-import heroBg from '../assets/home.png';
-import mobileHeroBg from "../assets/mobile.png";
 import WhyChooseSection from "../components/bento-grid"
 import gift1 from "../assets/Gifts_Website/1.jpeg"
 import gift2 from "../assets/Gifts_Website/2.jpeg"
@@ -302,7 +300,7 @@ const InteractiveMarquee = () => {
 };
 
 const InteractiveGiftingMarquee = () => {
-  const giftImages = [gift1, gift2, gift3, gift4, gift5, gift6, gift7, gift8, gift9, gift10, gift11];
+  const giftImages = [almonds,cashew,mixed,walnut,pisco,pepper,turmeric,cardamom,cinnamon,saffron];
 
   const GiftImage = ({ src, index }) => (
     <motion.div
@@ -569,14 +567,6 @@ const HomePage = () => {
             alt="Gift Boxes"
             class="w-full h-full object-cover"
           />
-          <svg class="absolute top-0 left-0 w-full h-full" viewBox="0 0 200 200">
-            <path id="curve1" d="M 20,100 A80,80 0 0,1 180,100" fill="transparent" />
-            <text class="text-[8px] sm:text-[10px] md:text-[12px] font-semibold fill-orange-500">
-              <textPath href="#curve1" startOffset="50%" text-anchor="middle">
-                Your Gifting Journey Starts Here
-              </textPath>
-            </text>
-          </svg>
         </div>
 
         <div class="relative w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 rounded-[20px] border-1 sm:border-2 border-[#ce8a4c] overflow-hidden shadow-xl bg-white flex items-center justify-center">
@@ -585,14 +575,6 @@ const HomePage = () => {
             alt="Premium Nuts"
             class="w-full h-full object-cover"
           />
-          <svg class="absolute top-0 left-0 w-full h-full" viewBox="0 0 200 200">
-            <path id="curve2" d="M 20,100 A80,80 0 0,1 180,100" fill="transparent" />
-            <text class="text-[8px] sm:text-[10px] md:text-[12px] font-semibold fill-white">
-              <textPath href="#curve2" startOffset="50%" text-anchor="middle">
-                Your Quality Day Begins Here
-              </textPath>
-            </text>
-          </svg>
         </div>
       </div>
     </div>

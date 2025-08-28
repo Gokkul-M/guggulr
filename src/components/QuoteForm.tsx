@@ -54,7 +54,7 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ onClose, productName }) => {
       const publicKey = 'YOUR_PUBLIC_KEY'; // Replace with your EmailJS public key
 
       const templateParams = {
-        to_email: 'your-email@gmail.com', // Replace with your Gmail address
+        to_email: 'support@guggulr.com', // Your support email
         from_name: formData.name,
         from_email: formData.email,
         phone: formData.phone,

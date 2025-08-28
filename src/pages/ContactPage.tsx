@@ -1,10 +1,12 @@
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Clock, Send, MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import emailjs from '@emailjs/browser';
 
 const ContactPage = () => {
+  const form = useRef();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -12,8 +14,10 @@ const ContactPage = () => {
     subject: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState({ success: false, message: '' });
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -21,18 +25,20 @@ const ContactPage = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Handle form submission here
-    alert('Thank you for your message! We\'ll get back to you soon.');
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      subject: '',
-      message: ''
-    });
+    setIsSubmitting(true);
+
+    emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', form.current, 'YOUR_PUBLIC_KEY')
+      .then((result) => {
+          setSubmitStatus({ success: true, message: 'Thank you for your message! We\'ll get back to you soon.' });
+          setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+      }, (error) => {
+          setSubmitStatus({ success: false, message: 'Failed to send message. Please try again later.' });
+      })
+      .finally(() => {
+        setIsSubmitting(false);
+      });
   };
 
   return (
@@ -96,20 +102,20 @@ const ContactPage = () => {
                   {
                     icon: <Phone className="w-5 h-5 sm:w-6 sm:h-6 text-orange-500" />,
                     title: "Phone",
-                    content: "+1 (555) 123-4567",
+                    content: "+91 95850 55599",
                     subContent: "Mon-Fri 9AM-6PM EST"
                   },
                   {
                     icon: <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-orange-500" />,
                     title: "Email",
-                    content: "hello@guggulr.com",
+                    content: "support@guggulr.com",
                     subContent: "We'll respond within 24 hours"
                   },
                   {
                     icon: <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-orange-500" />,
                     title: "Address",
-                    content: "123 Spice Street",
-                    subContent: "Global Foods District, GF 12345"
+                    content: "1ST STREET, ANANDHAM NAGAR,",
+                    subContent: "RAMAPURAM, CHENNAI -600089"
                   },
                   {
                     icon: <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-orange-500" />,
@@ -151,7 +157,7 @@ const ContactPage = () => {
                 Send us a Message
               </h3>
 
-              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+              <form ref={form} onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -235,11 +241,23 @@ const ContactPage = () => {
 
                 <Button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white py-3 sm:py-4 text-sm sm:text-base font-medium rounded-lg transition-all duration-300 hover:shadow-lg"
+                  disabled={isSubmitting}
+                  className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white py-3 sm:py-4 text-sm sm:text-base font-medium rounded-lg transition-all duration-300 hover:shadow-lg disabled:opacity-50"
                 >
-                  <Send className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                  Send Message
+                  {isSubmitting ? (
+                    'Sending...'
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                      Send Message
+                    </>
+                  )}
                 </Button>
+                {submitStatus.message && (
+                  <p className={`text-sm text-center ${submitStatus.success ? 'text-green-500' : 'text-red-500'}`}>
+                    {submitStatus.message}
+                  </p>
+                )}
               </form>
             </motion.div>
           </div>

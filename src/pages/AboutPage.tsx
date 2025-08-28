@@ -2,6 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Heart, Award, Users, Globe } from 'lucide-react';
+import product from "../assets/nuts-background.jpg"
 
 const AboutPage = () => {
   return (
@@ -68,9 +69,9 @@ const AboutPage = () => {
             >
               <div className="aspect-square bg-gradient-to-br from-orange-100 to-red-100 rounded-3xl flex items-center justify-center">
   <img
-    src="/path-to-your-image.jpg"
+    src={product}
     alt="Product"
-    className="w-2/3 h-2/3 object-contain"
+    className="w-full h-full object-cover rounded-[30px]"
   />
 </div>
 

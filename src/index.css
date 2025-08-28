@@ -4,13 +4,16 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  background-color: #f8f9fa;
+  /* Light beige background for a warm, natural feel */
 }
 
-/* Mobile-first responsive improvements */
+/* Responsive improvements for mobile */
 @media (max-width: 640px) {
   .container {
     padding-left: 1rem;
@@ -23,23 +26,29 @@ html, body {
   box-sizing: border-box;
 }
 
-/* Smooth scrolling */
+/* Smooth scrolling for better navigation */
 html {
   scroll-behavior: smooth;
 }
 
-/* Better mobile touch targets */
+/* Enhanced mobile touch targets */
 @media (max-width: 768px) {
-  button, a {
+
+  button,
+  a {
     min-height: 44px;
     min-width: 44px;
+    -webkit-tap-highlight-color: transparent;
+    /* Disable tap highlight on iOS */
   }
 }
 
+/* Keyframe animations for marquee effects */
 @keyframes marquee {
   from {
     transform: translateX(0);
   }
+
   to {
     transform: translateX(calc(-100% - var(--gap)));
   }
@@ -49,11 +58,13 @@ html {
   from {
     transform: translateY(0);
   }
+
   to {
     transform: translateY(calc(-100% - var(--gap)));
   }
 }
 
+/* Styling for animated marquees */
 .animate-marquee {
   animation: marquee var(--duration) linear infinite;
 }
@@ -62,6 +73,7 @@ html {
   animation: marquee-vertical var(--duration) linear infinite;
 }
 
+/* CSS variables for consistent theming */
 :root {
   --background: 0 0% 100%;
   --foreground: 222.2 84% 4.9%;
@@ -83,20 +95,22 @@ html {
   --input: 214.3 31.8% 91.4%;
   --ring: 25 95% 53%;
   --radius: 0.5rem;
-  
 }
 
+/* Body styling with an elegant gradient */
 body {
   font-family: 'Inter', sans-serif;
-  background: linear-gradient(135deg, #fef7ed 0%, #fff7ed 50%, #fef3c7 100%);
+  background: linear-gradient(135deg, #fdf6e7 0%, #fef3c7 100%);
   color: hsl(var(--foreground));
   min-height: 100vh;
 }
 
+/* Custom font for display text */
 .font-display {
   font-family: 'Playfair Display', serif;
 }
 
+/* Gradient text for a visually striking effect */
 .gradient-text {
   background: linear-gradient(135deg, #f97316, #ea580c, #dc2626);
   -webkit-background-clip: text;
@@ -104,97 +118,129 @@ body {
   background-clip: text;
 }
 
+/* Glass effect for semi-transparent elements */
 .glass-effect {
-  background: rgba(255, 255, 255, 0.25);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
+/* Subtle pattern for background enhancement */
 .spice-pattern {
-  background-image: 
-    radial-gradient(circle at 20% 50%, rgba(251, 146, 60, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(239, 68, 68, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 40% 80%, rgba(245, 158, 11, 0.1) 0%, transparent 50%);
+  background-image:
+    radial-gradient(circle at 15% 45%, rgba(251, 146, 60, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 85% 25%, rgba(239, 68, 68, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 45% 85%, rgba(245, 158, 11, 0.08) 0%, transparent 40%);
 }
 
+/* Floating animation for dynamic elements */
 .floating-animation {
-  animation: float 6s ease-in-out infinite;
+  animation: float 8s ease-in-out infinite;
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-25px);
+  }
 }
 
+/* Delayed and slower float animations */
 @keyframes float-delayed {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-15px); }
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
 }
 
 @keyframes float-slow {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
 }
 
+/* Animation classes */
 .animate-float {
-  animation: float 6s ease-in-out infinite;
+  animation: float 8s ease-in-out infinite;
 }
 
 .animate-float-delayed {
-  animation: float-delayed 8s ease-in-out infinite;
+  animation: float-delayed 10s ease-in-out infinite;
 }
 
 .animate-float-slow {
-  animation: float-slow 10s ease-in-out infinite;
+  animation: float-slow 12s ease-in-out infinite;
 }
 
+/* Hover effect for lifting elements */
 .hover-lift {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .hover-lift:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  transform: translateY(-12px);
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.2);
 }
 
+/* Glowing effect for icons */
 .glowing-icon {
-  transition: all 0.3s ease;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .glowing-icon:hover {
   color: hsl(var(--primary));
-  text-shadow: 0 0 15px hsla(var(--primary), 0.8);
+  text-shadow: 0 0 20px hsla(var(--primary), 0.7);
 }
 
+/* Highlight for input fields on focus */
 .input-highlight:focus {
   box-shadow: 0 0 0 2px hsl(var(--background)), 0 0 0 4px hsl(var(--primary));
 }
 
+/* Circular text element with rotation animation */
 .circular-text {
   position: absolute;
-  width: 150px; /* Adjust as needed for circle size */
-  height: 150px; /* Adjust as needed for circle size */
+  width: 160px;
+  height: 160px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-size: 0.85rem;
+  font-weight: 700;
   color: #fff;
   text-align: center;
   overflow: hidden;
-  border: 2px solid #f97316; /* Orange border */
+  border: 3px solid #f97316;
   background: linear-gradient(45deg, #f97316, #ea580c);
-  box-shadow: 0 0 15px rgba(249, 115, 22, 0.5);
-  animation: rotate 10s linear infinite;
+  box-shadow: 0 0 20px rgba(249, 115, 22, 0.4);
+  animation: rotate 12s linear infinite;
 }
 
 @keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
+/* Text on a path within circular text */
 .text-on-path {
   position: absolute;
   width: 100%;
@@ -202,12 +248,15 @@ body {
 }
 
 .text-on-path textPath {
-  font-size: 1.1em;
+  font-size: 1.15em;
   font-weight: bold;
   fill: #fff;
   text-transform: uppercase;
+  letter-spacing: 1px;
+  /* Added letter spacing for clarity */
 }
 
+/* Content inside circular text */
 .circular-text .content {
   position: relative;
   z-index: 1;
@@ -215,9 +264,10 @@ body {
   font-family: 'Inter', sans-serif;
   color: #fff;
   font-weight: bold;
-  font-size: 0.9em;
+  font-size: 0.95em;
 }
 
+/* Inner image for circular text */
 .circular-inner-image {
   position: absolute;
   width: 90%;
@@ -226,13 +276,15 @@ body {
   object-fit: cover;
   z-index: 0;
 }
-html, body {
+
+/* Overflow fixes and touch actions */
+html,
+body {
   overflow-x: hidden;
   touch-action: pan-y;
   -webkit-overflow-scrolling: touch;
 }
 
-/* Home page specific overflow fixes */
 .home-page {
   overflow-x: hidden;
   width: 100%;
@@ -250,15 +302,13 @@ html, body {
   max-width: 100vw;
 }
 
-/* Ensure navbar doesn't cause overflow */
 nav {
   width: 100%;
   max-width: 100vw;
   overflow-x: hidden;
 }
 
-
-
+/* Disable user-drag on images */
 img {
   -webkit-user-drag: none;
   -khtml-user-drag: none;

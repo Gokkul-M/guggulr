@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from '@/components/ui/toaster';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { CategoryProvider } from '@/context/CategoryContext';
 import HomePage from '@/pages/HomePage';
 import ProductsPage from '@/pages/ProductsPage';
 import ProductDetailsPage from '@/pages/ProductDetailsPage';
@@ -11,7 +12,6 @@ import GiftDetailsPage from './pages/gift-details-page';
 import AboutPage from '@/pages/AboutPage';
 import ContactPage from '@/pages/ContactPage';
 import QuotePage from './pages/QuotePage';
-import { CategoryProvider } from '@/context/CategoryContext';
 
 function App() {
   return (

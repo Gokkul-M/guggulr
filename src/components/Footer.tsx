@@ -1,31 +1,30 @@
 import React, { memo, useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { Facebook, Instagram, Twitter, Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
 
-// FIX: All helper components are moved outside the main Footer component to prevent re-declaration on every render.
-// They are memoized for optimal performance.
-
 const SocialIcon = memo(({ Icon, label, url }) => (
-  <a
+  <motion.a
     href={url}
     target="_blank"
     rel="noopener noreferrer"
     aria-label={label}
-    className="group relative"
+    className="group relative text-gray-400 hover:text-white transition-colors duration-300"
+    whileHover={{ scale: 1.2, rotate: -15 }}
+    transition={{ type: "spring", stiffness: 400, damping: 10 }}
   >
-    <Icon className="w-6 h-6 text-gray-400 hover:text-orange-400 cursor-pointer transition-all duration-300 hover:scale-110 group-hover:drop-shadow-lg" />
-    {/* Hover tooltip */}
-    <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-orange-500 text-white text-xs px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-20">
+    <Icon className="w-6 h-6" />
+    <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-orange-500 text-white text-xs px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-20">
       {label}
     </div>
-  </a>
+  </motion.a>
 ));
 SocialIcon.displayName = 'SocialIcon';
 
 const ContactItem = memo(({ Icon, children }) => (
-  <div className="flex items-center space-x-3 group hover:bg-white/5 rounded-lg p-2 -m-2 transition-colors duration-200">
-    <Icon className="w-5 h-5 text-orange-400 group-hover:text-orange-300 transition-colors duration-200 flex-shrink-0" />
-    <span className="text-sm group-hover:text-gray-300 transition-colors duration-200">
+  <div className="flex items-center space-x-4 group">
+    <Icon className="w-5 h-5 text-orange-400 flex-shrink-0 transition-transform duration-300 group-hover:scale-110" />
+    <span className="text-sm text-gray-300 group-hover:text-white transition-colors duration-300">
       {children}
     </span>
   </div>
@@ -33,18 +32,19 @@ const ContactItem = memo(({ Icon, children }) => (
 ContactItem.displayName = 'ContactItem';
 
 const QuickLinkItem = memo(({ to, label }) => (
-    <Link
-      to={to}
-      className="block text-gray-400 hover:text-orange-400 transition-all duration-300 hover:translate-x-1 relative group"
-    >
-      <span className="relative">{label}</span>
-      <ArrowRight className="w-4 h-4 inline-block ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-    </Link>
+  <Link
+    to={to}
+    className="block text-gray-400 hover:text-white transition-all duration-300 relative group py-1"
+  >
+    <span className="relative flex items-center">
+      <ArrowRight className="w-4 h-4 mr-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-orange-400" />
+      {label}
+    </span>
+  </Link>
 ));
 QuickLinkItem.displayName = 'QuickLinkItem';
 
 const Footer = () => {
-  // Memoized data to prevent re-creation on each render
   const quickLinks = useMemo(() => [
     { label: "Home", to: "/" },
     { label: "Products", to: "/products" },
@@ -53,9 +53,9 @@ const Footer = () => {
   ], []);
 
   const socialIcons = useMemo(() => [
-    { Icon: Facebook, label: "Facebook", url: "https://facebook.com/yourpage" },
-    { Icon: Instagram, label: "Instagram", url: "https://instagram.com/yourpage" },
-    { Icon: Twitter, label: "Twitter", url: "https://twitter.com/yourpage" },
+    { Icon: Facebook, label: "Facebook", url: "https://facebook.com/guggulr" },
+    { Icon: Instagram, label: "Instagram", url: "https://instagram.com/guggulr" },
+    { Icon: Twitter, label: "Twitter", url: "https://twitter.com/guggulr" },
   ], []);
 
   const categories = useMemo(() => [
@@ -66,75 +66,91 @@ const Footer = () => {
   ], []);
 
   return (
-    <footer className="bg-gradient-to-br from-gray-950 via-gray-900 to-gray-800 text-white relative overflow-hidden">
-      {/* Background decorative blobs */}
+    <footer className="bg-gray-900 text-white relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-24 -left-24 w-72 h-72 bg-orange-500/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute -bottom-32 -right-32 w-80 h-80 bg-red-500/10 rounded-full blur-3xl animate-pulse [animation-delay:2s]" />
+        <div className="absolute -top-32 -left-32 w-80 h-80 bg-gradient-to-br from-orange-500/10 to-transparent rounded-full blur-3xl animate-pulse" />
+        <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-gradient-to-tl from-red-500/10 to-transparent rounded-full blur-3xl animate-pulse [animation-delay:2s]" />
       </div>
       
-      {/* Background grid pattern */}
       <div
-        className="absolute inset-0 opacity-[0.04]"
+        className="absolute inset-0 opacity-[0.03]"
         style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.25) 1px, transparent 0)`,
-          backgroundSize: '22px 22px',
+          backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.2) 1px, transparent 0)`,
+          backgroundSize: '24px 24px',
         }}
       />
 
-      <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-16 sm:py-20">
-        
-        {/* FIX: Newsletter section is moved out and placed before the main grid for better layout and focus. */}
-        <div className="mb-12 p-6 bg-gradient-to-r from-orange-500/10 to-red-500/10 rounded-lg border border-orange-500/20 text-center">
-            <h3 className="text-lg font-semibold text-white mb-2">Stay Updated</h3>
-            <p className="text-sm text-orange-200 mb-4 max-w-md mx-auto">
-              Subscribe to our newsletter to get the latest offers, new product alerts, and more.
-            </p>
-            <form className="flex flex-col sm:flex-row justify-center items-center gap-3 max-w-sm mx-auto">
-                <input 
-                    type="email"
-                    placeholder="Enter your email"
-                    className="w-full bg-gray-800/50 border border-gray-600/50 rounded-md py-2 px-4 text-sm text-white placeholder-gray-400 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-200"
-                />
-                <button 
-                    type="submit"
-                    className="w-full sm:w-auto bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-6 rounded-md transition-colors duration-300"
-                >
-                    Subscribe
-                </button>
-            </form>
+      <div className="relative max-w-8xl mx-auto px-6 sm:px-8 lg:px-12 py-16 sm:py-24">
+        <div className="mb-16 p-8 bg-black/20 backdrop-blur-sm rounded-2xl border border-orange-500/20 text-center">
+          <motion.h3 
+            className="text-2xl font-bold text-white mb-3"
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
+            viewport={{ once: true }}
+          >
+            Join the Guggulr Family
+          </motion.h3>
+          <motion.p 
+            className="text-sm text-orange-200/80 mb-6 max-w-md mx-auto"
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2, ease: 'easeOut' }}
+            viewport={{ once: true }}
+          >
+            Subscribe for exclusive offers, new product alerts, and a taste of our finest selection.
+          </motion.p>
+          <form className="flex flex-col sm:flex-row justify-center items-center gap-4 max-w-md mx-auto">
+            <motion.input 
+              type="email"
+              placeholder="Enter your email"
+              className="w-full bg-gray-800/60 border border-gray-700/80 rounded-lg py-2.5 px-4 text-sm text-white placeholder-gray-400 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-300 shadow-inner"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.4, ease: 'easeOut' }}
+              viewport={{ once: true }}
+            />
+            <motion.button 
+              type="submit"
+              className="w-full sm:w-auto bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold py-2.5 px-8 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.5, ease: 'easeOut' }}
+              viewport={{ once: true }}
+            >
+              Subscribe
+            </motion.button>
+          </form>
         </div>
 
-        {/* FIX: Grid layout is now cleaner. `grid-cols-1` for mobile, `sm:grid-cols-2` for small screens, and `lg:grid-cols-4` for desktop. */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 sm:gap-12">
-          
-          {/* Brand & Socials */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 sm:gap-14">
           <div className="sm:col-span-2 lg:col-span-1 space-y-6">
             <Link to="/" className="inline-block group">
-              <img 
-                src="/logo.jpg" // Use absolute path from public folder
+              <motion.img 
+                src="/logo.jpg"
                 alt="Guggulr Logo"
-                width="110"
-                height="52"
-                className="rounded-xl shadow-md group-hover:scale-105 transition-transform duration-500"
+                width="120"
+                height="56"
+                className="rounded-xl shadow-lg"
+                whileHover={{ scale: 1.05, rotate: -3 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 10 }}
                 loading="lazy"
               />
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
-              Premium nuts, dry fruits, and exotic spices sourced globally for your <span className="text-orange-400 font-semibold">health and happiness</span>.
+              Experience the world's finest nuts, dry fruits, and spices, curated with a passion for <span className="text-orange-400 font-semibold">quality and flavor</span>.
             </p>
-            <div className="flex space-x-5">
+            <div className="flex space-x-6 pt-2">
               {socialIcons.map(({ Icon, label, url }) => (
                 <SocialIcon key={label} Icon={Icon} label={label} url={url} />
               ))}
             </div>
           </div>
 
-          {/* Quick Links */}
           <div>
-            <h3 className="font-semibold text-lg mb-5 text-white relative">
+            <h3 className="font-bold text-lg mb-6 text-white relative">
               Quick Links
-              <div className="absolute -bottom-2 left-0 w-12 h-0.5 bg-gradient-to-r from-orange-500 to-red-500 rounded-full" />
+              <div className="absolute -bottom-2 left-0 w-10 h-0.5 bg-gradient-to-r from-orange-500 to-red-500 rounded-full" />
             </h3>
             <nav className="space-y-3">
               {quickLinks.map((link) => (
@@ -143,45 +159,41 @@ const Footer = () => {
             </nav>
           </div>
 
-          {/* Categories */}
           <div>
-            <h3 className="font-semibold text-lg mb-5 text-white relative">
-              Categories
-              <div className="absolute -bottom-2 left-0 w-12 h-0.5 bg-gradient-to-r from-orange-500 to-red-500 rounded-full" />
+            <h3 className="font-bold text-lg mb-6 text-white relative">
+              Top Categories
+              <div className="absolute -bottom-2 left-0 w-10 h-0.5 bg-gradient-to-r from-orange-500 to-red-500 rounded-full" />
             </h3>
             <div className="space-y-3">
               {categories.map((category) => (
-                <QuickLinkItem key={category} to={`/products/${category.toLowerCase().replace(' ', '-')}`} label={category} />
+                <QuickLinkItem key={category} to={`/products/${category.toLowerCase().replace(/\s+/g, '-')}`} label={category} />
               ))}
             </div>
           </div>
 
-          {/* Contact */}
           <div>
-            <h3 className="font-semibold text-lg mb-5 text-white relative">
-              Contact
-              <div className="absolute -bottom-2 left-0 w-12 h-0.5 bg-gradient-to-r from-orange-500 to-red-500 rounded-full" />
+            <h3 className="font-bold text-lg mb-6 text-white relative">
+              Get in Touch
+              <div className="absolute -bottom-2 left-0 w-10 h-0.5 bg-gradient-to-r from-orange-500 to-red-500 rounded-full" />
             </h3>
-            <div className="space-y-4">
+            <div className="space-y-5">
               <ContactItem Icon={Phone}>+91 95850 55599</ContactItem>
               <ContactItem Icon={Mail}>support@guggulr.com</ContactItem>
               <ContactItem Icon={MapPin}>
-                ANANDHAM NAGAR,
-                RAMAPURAM, CHENNAI -600089
+                Anandham Nagar, Ramapuram, Chennai - 600089
               </ContactItem>
             </div>
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="border-t border-gray-700/50 mt-16 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-y-4">
+        <div className="border-t border-gray-800/70 mt-20 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-y-5">
             <p className="text-gray-500 text-sm text-center md:text-left">
-              © {new Date().getFullYear()} Guggulr Global Foods. All rights reserved.
+              &copy; {new Date().getFullYear()} Guggulr Global Foods. All rights reserved.
             </p>
             <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs text-gray-500">
-              <Link to="/privacy-policy" className="hover:text-orange-400 cursor-pointer transition-colors duration-200">Privacy Policy</Link>
-              <Link to="/terms-of-service" className="hover:text-orange-400 cursor-pointer transition-colors duration-200">Terms of Service</Link>
+              <Link to="/privacy-policy" className="hover:text-orange-400 transition-colors duration-300">Privacy Policy</Link>
+              <Link to="/terms-of-service" className="hover:text-orange-400 transition-colors duration-300">Terms of Service</Link>
             </div>
           </div>
         </div>
