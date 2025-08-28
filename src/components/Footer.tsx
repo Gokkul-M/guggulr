@@ -53,9 +53,9 @@ const Footer = () => {
   ], []);
 
   const socialIcons = useMemo(() => [
-    { Icon: Facebook, label: "Facebook", url: "https://facebook.com/guggulr" },
-    { Icon: Instagram, label: "Instagram", url: "https://instagram.com/guggulr" },
-    { Icon: Twitter, label: "Twitter", url: "https://twitter.com/guggulr" },
+    { Icon: Facebook, label: "Facebook", url: "https://www.facebook.com/share/1CcrAovRjy/" },
+    { Icon: Instagram, label: "Instagram", url: "https://www.instagram.com/guggulr2025?igsh=ZHVrODUzams4aHNn" },
+    { Icon: Twitter, label: "Twitter", url: "https://x.com/guggulr?t=KW-IYtDg-kXh-5N-W_e8iA&s=09" },
   ], []);
 
   const categories = useMemo(() => [

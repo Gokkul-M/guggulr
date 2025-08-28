@@ -24,7 +24,10 @@ import gift7 from "../assets/Gifts_Website/7.jpeg"
 import gift8 from "../assets/Gifts_Website/8.jpeg"
 import gift9 from "../assets/Gifts_Website/9.jpeg"
 import gift10 from "../assets/Gifts_Website/10.jpeg"
-import gift11 from "../assets/Gifts_Website/11.jpeg"
+
+import gist from "../assets/gift.jpeg"
+import nuts from "../assets/nuts.jpeg"
+import InteractiveMap from "../components/InteractiveMap.tsx"
 
 import homebg from "../assets/home.jpeg"
 import gift from "../assets/gift-box.jpg"
@@ -509,77 +512,97 @@ const HomePage = () => {
 
   return (
     <div className="home-page bg-white">
-<section class="relative min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-12 overflow-hidden bg-gray-900">
-  <div class="absolute inset-0">
+<section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-12 overflow-hidden bg-gray-900">
+  {/* 🔥 Background */}
+  <div className="absolute inset-0">
     <img
       src={homebg}
       alt="Nuts and leaves background"
-      class="w-full h-full object-cover opacity-60"
+      className="w-full h-full object-cover opacity-70"
     />
-    <div class="absolute inset-0"></div>
+    <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"></div>
   </div>
 
-  <div class="relative z-10 max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-12 sm:py-16">
+  {/* Content Grid */}
+  <div className="relative z-10 max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-12 sm:py-16">
     
-    <div class="relative flex justify-center items-center h-full">
-      
-      <div class="w-60 h-60 sm:w-80 sm:h-80 md:w-[450px] md:h-[450px] rounded-full border-[4px] sm:border-[6px] border-[#ce8a4c] overflow-hidden shadow-2xl relative">
-        <img
-          src={gift}
-          alt="Gift Box"
-          class="w-full h-full object-cover"
-        />
-        <span class="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 bg-white px-2 py-0.5 rounded-full text-[8px] sm:text-[10px] font-bold text-gray-800 shadow">
+    {/* 🍂 Floating Circle Section */}
+    <div className="relative flex justify-center items-center h-full">
+      {/* Big Center Circle */}
+      <div className="w-60 h-60 sm:w-80 sm:h-80 md:w-[450px] md:h-[450px] rounded-full border-[6px] border-transparent 
+                      bg-gradient-to-tr from-[#ce8a4c] to-[#e2b87c] p-[3px] shadow-[0_0_30px_rgba(206,138,76,0.5)]
+                      relative animate-[float_6s_ease-in-out_infinite]">
+        <div className="w-full h-full rounded-full overflow-hidden">
+          <img
+            src={gift}
+            alt="Gift Box"
+            className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+          />
+        </div>
+        <span className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 bg-white/90 px-3 py-1 
+                         rounded-full text-[10px] sm:text-xs font-bold text-gray-800 shadow">
           GUGGULR
         </span>
       </div>
 
-      <div class="absolute -top-4 sm:-top-6 right-0 w-20 h-20 sm:w-28 sm:h-28 md:w-[180px] md:h-[180px] rounded-full border-[3px] sm:border-[4px] border-[#ce8a4c] overflow-hidden shadow-lg">
-        <img src={date} alt="Almonds" class="w-full h-full object-cover" />
+      {/* Small Floating Circles */}
+      <div className="absolute -top-4 sm:-top-6 right-0 w-20 h-20 sm:w-28 sm:h-28 md:w-[180px] md:h-[180px] 
+                      rounded-full border-[3px] border-transparent bg-gradient-to-tr from-[#ce8a4c] to-[#e2b87c] p-[2px] 
+                      shadow-lg transition-transform duration-300 hover:scale-110">
+        <img src={date} alt="Dates" className="w-full h-full object-cover rounded-full" />
       </div>
 
-      <div class="absolute -bottom-2 sm:-bottom-4 right-0 w-16 h-16 sm:w-24 sm:h-24 md:w-[120px] md:h-[120px] rounded-full border-[3px] sm:border-[4px] border-[#ce8a4c] overflow-hidden shadow-lg">
-        <img src={pistachios} alt="Dates" class="w-full h-full object-cover" />
+      <div className="absolute -bottom-2 sm:-bottom-4 right-0 w-16 h-16 sm:w-24 sm:h-24 md:w-[120px] md:h-[120px] 
+                      rounded-full border-[3px] border-transparent bg-gradient-to-tr from-[#ce8a4c] to-[#e2b87c] p-[2px] 
+                      shadow-lg transition-transform duration-300 hover:scale-110">
+        <img src={pistachios} alt="Pistachios" className="w-full h-full object-cover rounded-full" />
       </div>
 
-      <div class="absolute bottom-0 -left-2 sm:-left-0 w-16 h-16 sm:w-24 sm:h-24 md:w-[120px] md:h-[120px] rounded-full border-[3px] sm:border-[4px] border-[#ce8a4c] overflow-hidden shadow-lg">
+      <div className="absolute bottom-0 -left-2 sm:bottom-2 sm:-left-0 w-16 h-16 sm:w-24 sm:h-24 md:w-[120px] md:h-[120px] 
+                      rounded-full border-[3px] border-transparent bg-gradient-to-tr from-[#ce8a4c] to-[#e2b87c] p-[2px] 
+                      shadow-lg transition-transform duration-300 hover:scale-110">
         <img
           src="https://images.pexels.com/photos/1295572/pexels-photo-1295572.jpeg?auto=compress&cs=tinysrgb&w=400"
-          alt="Pistachios"
-          class="w-full h-full object-cover"
+          alt="Nuts"
+          className="w-full h-full object-cover rounded-full"
         />
       </div>
     </div>
 
-    <div class="flex flex-col items-center lg:items-start text-center lg:text-left space-y-6 sm:space-y-8 mt-10 lg:mt-0">
-      <h1 class="text-white font-extrabold leading-tight text-3xl sm:text-4xl md:text-6xl drop-shadow-xl font-serif">
-        <span class="block text-orange-400">Guggulr</span>
-        <span class="block">Global Foods</span>
+    {/* 🥂 Text + Buttons */}
+    <div className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-6 sm:space-y-8 mt-10 lg:mt-0">
+      <h1 className="text-white font-extrabold leading-tight text-3xl sm:text-4xl md:text-6xl drop-shadow-xl font-serif">
+        <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#f6d365] to-[#fda085]">Guggulr</span>
+        <span className="block">Global Foods</span>
       </h1>
-      <p class="text-base sm:text-lg md:text-xl text-white font-medium max-w-xl leading-relaxed font-sans">
-        Nuts for your desk! 
-        Gifts for their heart!
+      <p className="text-base sm:text-lg md:text-xl text-white/90 font-medium max-w-xl leading-relaxed font-sans">
+        Nuts for your desk. <br className="hidden sm:block" /> Gifts for their heart!
       </p>
-      <div class="flex flex-wrap gap-4 sm:gap-6 justify-center lg:justify-start pt-4">
-        <div class="relative w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 rounded-[20px] border-1 sm:border-2 border-[#ce8a4c] overflow-hidden shadow-xl bg-white flex items-center justify-center">
-          <img
-            src={gift1}
-            alt="Gift Boxes"
-            class="w-full h-full object-cover"
-          />
+
+      {/* Buttons as Image Cards */}
+      <div className="flex flex-wrap gap-6 justify-center lg:justify-start pt-4">
+        <div
+          className="relative w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 rounded-[20px] border border-[#ce8a4c] 
+                    overflow-hidden shadow-xl bg-white flex items-center justify-center 
+                    transition-all duration-500 cursor-pointer hover:scale-110 hover:shadow-[0_0_35px_6px_rgba(255,215,0,0.8)]"
+          onClick={() => navigate("/gifting")}
+        >
+          <img src={gist} alt="Gift Boxes" className="w-full h-full object-cover" />
         </div>
 
-        <div class="relative w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 rounded-[20px] border-1 sm:border-2 border-[#ce8a4c] overflow-hidden shadow-xl bg-white flex items-center justify-center">
-          <img
-            src="https://images.pexels.com/photos/1295572/pexels-photo-1295572.jpeg?auto=compress&cs=tinysrgb&w=400"
-            alt="Premium Nuts"
-            class="w-full h-full object-cover"
-          />
+        <div
+          className="relative w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 rounded-[20px] border border-[#ce8a4c] 
+                    overflow-hidden shadow-xl bg-white flex items-center justify-center 
+                    transition-all duration-500 cursor-pointer hover:scale-110 hover:shadow-[0_0_35px_6px_rgba(255,215,0,0.8)]"
+          onClick={() => navigate("/nuts")}
+        >
+          <img src={nuts} alt="Premium Nuts" className="w-full h-full object-cover" />
         </div>
       </div>
     </div>
   </div>
 </section>
+
 
       <section className="py-12 sm:py-16 bg-white border-b border-gray-100 md:px-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -975,9 +998,7 @@ const HomePage = () => {
             className="bg-gray-200 rounded-2xl sm:rounded-3xl h-64 sm:h-80 md:h-96 flex items-center justify-center"
           >
             <div className="text-center text-gray-500">
-              <MapPin className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 text-orange-500" />
-              <p className="text-sm sm:text-base">Interactive map coming soon</p>
-              <p className="text-xs sm:text-sm mt-2">123 Spice Street, Global Foods District</p>
+             <InteractiveMap/>
             </div>
           </motion.div>
         </div>
