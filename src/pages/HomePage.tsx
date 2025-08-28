@@ -990,17 +990,23 @@ const HomePage = () => {
             </p>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="bg-gray-200 rounded-2xl sm:rounded-3xl h-64 sm:h-80 md:h-96 flex items-center justify-center"
-          >
-            <div className="text-center text-gray-500">
-             <InteractiveMap/>
-            </div>
-          </motion.div>
+<motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+      className="rounded-2xl sm:rounded-3xl overflow-hidden h-64 sm:h-80 md:h-96 shadow-lg"
+    >
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.994881695133!2d80.17497937412996!3d13.036069813986553!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52613e551378b3%3A0x69f706566833b3a!2s1st%20Street%2C%20Anandham%20Nagar%2C%20Ramapuram%2C%20Chennai%2C%20Tamil%20Nadu%20600089!5e0!3m2!1sen!2sin!4v1724571300000!5m2!1sen!2sin"
+        width="100%"
+        height="100%"
+        style={{ border: 0 }}
+        allowFullScreen={true}
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </motion.div>
         </div>
       </section>
 
