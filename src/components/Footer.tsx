@@ -1,7 +1,8 @@
 import React, { memo, useMemo } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Facebook, Instagram, Twitter, Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
+
 
 const SocialIcon = memo(({ Icon, label, url }) => (
   <motion.a
@@ -45,6 +46,7 @@ const QuickLinkItem = memo(({ to, label }) => (
 QuickLinkItem.displayName = 'QuickLinkItem';
 
 const Footer = () => {
+  const navigate = useNavigate();
   const quickLinks = useMemo(() => [
     { label: "Home", to: "/" },
     { label: "Products", to: "/products" },
@@ -58,12 +60,27 @@ const Footer = () => {
     { Icon: Twitter, label: "Twitter", url: "https://x.com/guggulr?t=KW-IYtDg-kXh-5N-W_e8iA&s=09" },
   ], []);
 
-  const categories = useMemo(() => [
-    "Premium Nuts",
-    "Dry Fruits",
-    "Exotic Spices",
-    "Gift Hampers"
-  ], []);
+  const categories = useMemo(
+    () => [
+      {
+        label: "Premium Nuts",
+        onClick: () => navigate("/products"),
+      },
+      {
+        label: "Dry Fruits",
+        onClick: () => navigate("/products"),
+      },
+      {
+        label: "Exotic Spices",
+        onClick: () => navigate("/products"),
+      },
+      {
+        label: "Gift Hampers",
+        onClick: () => navigate("/gifting"),
+      },
+    ],
+    [navigate]
+  );
 
   return (
     <footer className="bg-gray-900 text-white relative overflow-hidden">
@@ -160,16 +177,25 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="font-bold text-lg mb-6 text-white relative">
-              Top Categories
-              <div className="absolute -bottom-2 left-0 w-10 h-0.5 bg-gradient-to-r from-orange-500 to-red-500 rounded-full" />
-            </h3>
-            <div className="space-y-3">
-              {categories.map((category) => (
-                <QuickLinkItem key={category} to={`/products/${category.toLowerCase().replace(/\s+/g, '-')}`} label={category} />
-              ))}
-            </div>
-          </div>
+      <h3 className="font-bold text-lg mb-6 text-white relative">
+        Top Categories
+        <div className="absolute -bottom-2 left-0 w-10 h-0.5 bg-gradient-to-r from-orange-500 to-red-500 rounded-full" />
+      </h3>
+      <div className="space-y-3">
+        {categories.map((category) => (
+          <button
+            key={category.label}
+            onClick={category.onClick}
+            className="block text-gray-400 hover:text-white transition-all duration-300 relative group py-1 text-left w-full"
+          >
+            <span className="relative flex items-center">
+              <ArrowRight className="w-4 h-4 mr-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-orange-400" />
+              {category.label}
+            </span>
+          </button>
+        ))}
+      </div>
+    </div>
 
           <div>
             <h3 className="font-bold text-lg mb-6 text-white relative">

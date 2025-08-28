@@ -62,7 +62,7 @@ export default function WhyChooseSection() {
                     Direct partnerships with certified farms and producers worldwide ensure the highest quality nuts and spices for your business operations.
                   </p>
                 </div>
-                <button className="mt-auto self-start bg-white text-orange-500 px-6 py-3 rounded-full text-sm font-semibold shadow-soft hover:bg-white/95 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 group-hover:scale-105">
+                <button className="mt-auto self-start bg-white text-orange-500 px-6 py-3 rounded-full text-sm font-semibold shadow-soft hover:bg-white/95 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 group-hover:scale-105" onClick={() => window.location.href = "/about"}>
                   Learn More
                 </button>
               </div>
@@ -93,7 +93,7 @@ export default function WhyChooseSection() {
                     Same-day shipping for bulk orders within metro areas.
                   </p>
                 </div>
-                <button className="mt-auto self-start bg-white text-orange-500 px-4 py-2.5 rounded-full text-sm font-semibold shadow-soft hover:bg-white/95 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 group-hover:scale-105">
+                <button className="mt-auto self-start bg-white text-orange-500 px-4 py-2.5 rounded-full text-sm font-semibold shadow-soft hover:bg-white/95 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 group-hover:scale-105" onClick={() => window.location.href = "/about"}>
                   Learn More
                 </button>
               </div>
@@ -124,7 +124,7 @@ export default function WhyChooseSection() {
                     Tailored blends, custom packaging, and specialized processing services to meet your unique business requirements.
                   </p>
                 </div>
-                <button className="mt-auto self-start bg-white text-orange-500 px-5 py-3 rounded-full text-sm font-semibold shadow-soft hover:bg-white/95 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 group-hover:scale-105">
+                <button className="mt-auto self-start bg-white text-orange-500 px-5 py-3 rounded-full text-sm font-semibold shadow-soft hover:bg-white/95 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 group-hover:scale-105" onClick={() => window.location.href = "/about"}>
                   Learn More
                 </button>
               </div>
@@ -155,9 +155,13 @@ export default function WhyChooseSection() {
                     FDA approved facilities, organic certifications, and rigorous quality testing ensure food safety compliance.
                   </p>
                 </div>
-                <button className="mt-auto self-start bg-white text-orange-500 px-4 py-2.5 rounded-full text-sm font-semibold shadow-soft hover:bg-white/95 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 group-hover:scale-105">
+                <button
+                  className="mt-auto self-start bg-white text-orange-500 px-4 py-2.5 rounded-full text-sm font-semibold shadow-soft hover:bg-white/95 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 group-hover:scale-105"
+                  onClick={() => window.location.href = "/about"}
+                >
                   Learn More
                 </button>
+
               </div>
             </div>
             <div className="absolute inset-0 opacity-5 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[length:20px_20px]"></div>
@@ -186,7 +190,7 @@ export default function WhyChooseSection() {
                     Dedicated account managers for enterprise clients.
                   </p>
                 </div>
-                <button className="mt-auto self-start bg-white text-orange-500 px-4 py-2.5 rounded-full text-sm font-semibold shadow-soft hover:bg-white/95 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 group-hover:scale-105">
+                <button className="mt-auto self-start bg-white text-orange-500 px-4 py-2.5 rounded-full text-sm font-semibold shadow-soft hover:bg-white/95 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 group-hover:scale-105" onClick={() => window.location.href = "/about"}>
                   Learn More
                 </button>
               </div>
@@ -217,7 +221,7 @@ export default function WhyChooseSection() {
                     Serving 500+ retailers and food manufacturers globally.
                   </p>
                 </div>
-                <button className="mt-auto self-start bg-white text-orange-500 px-4 py-2.5 rounded-full text-sm font-semibold shadow-soft hover:bg-white/95 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 group-hover:scale-105">
+                <button className="mt-auto self-start bg-white text-orange-500 px-4 py-2.5 rounded-full text-sm font-semibold shadow-soft hover:bg-white/95 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 group-hover:scale-105" onClick={() => window.location.href = "/about"}>
                   Learn More
                 </button>
               </div>

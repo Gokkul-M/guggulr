@@ -312,6 +312,7 @@ const InteractiveGiftingMarquee = () => {
       transition={{ duration: 0.6, delay: index * 0.1 }}
       className="group relative w-64 h-40 sm:w-72 sm:h-48 mx-2 sm:mx-4 cursor-pointer flex-shrink-0"
       whileHover={{ scale: 1.05, y: -10 }}
+      onClick={() => window.location.href = `/products`}
     >
       <div className="absolute inset-0 bg-white rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-300" />
       <div className="relative h-full bg-white backdrop-blur-md rounded-3xl overflow-hidden shadow-xl border border-white group-hover:shadow-2xl transition-all duration-300">
@@ -683,10 +684,10 @@ const HomePage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 sm:mb-6">
-              Explore Our <span className="bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">Collections</span>
+              Explore Our <span className="bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">Gift Hampers</span>
             </h2>
             <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
-              Premium nuts and exotic spices in continuous display
+            Click any gift hamper to explore our elegant solutions that create lasting memories 
             </p>
           </div>
 
@@ -768,10 +769,10 @@ const HomePage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 sm:mb-6">
-              Perfect <span className="bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent drop-shadow-sm">Gift Hampers </span>
+              Perfect <span className="bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent drop-shadow-sm">Collections </span>
             </h2>
             <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
-              Click any gift hamper to explore our elegant solutions that create lasting memories
+              Premium nuts and exotic spices in continuous display
             </p>
           </div>
 
@@ -997,15 +998,16 @@ const HomePage = () => {
       viewport={{ once: true }}
       className="rounded-2xl sm:rounded-3xl overflow-hidden h-64 sm:h-80 md:h-96 shadow-lg"
     >
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.994881695133!2d80.17497937412996!3d13.036069813986553!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52613e551378b3%3A0x69f706566833b3a!2s1st%20Street%2C%20Anandham%20Nagar%2C%20Ramapuram%2C%20Chennai%2C%20Tamil%20Nadu%20600089!5e0!3m2!1sen!2sin!4v1724571300000!5m2!1sen!2sin"
-        width="100%"
-        height="100%"
-        style={{ border: 0 }}
-        allowFullScreen={true}
-        loading="lazy"
-        referrerPolicy="no-referrer-when-downgrade"
-      ></iframe>
+<iframe
+  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3886.961749940351!2d80.1773467!3d13.0315964!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDAxJzUzLjciTiA4MMKwMTAnMzguNSJF!5e0!3m2!1sen!2sin!4v1724575000000!5m2!1sen!2sin"
+  width="100%"
+  height="400"
+  style={{ border: 0 }}
+  allowFullScreen={true}
+  loading="lazy"
+  referrerPolicy="no-referrer-when-downgrade"
+/>
+
     </motion.div>
         </div>
       </section>

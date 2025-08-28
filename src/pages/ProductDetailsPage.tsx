@@ -46,18 +46,6 @@ import whiteDates from '../assets/products/White Dates.png';
 import wildCardamom from '../assets/products/Wild Cardamom.png';
 import wholeCashews from '../assets/products/Whole Cashews.png';
 
-import gift1 from '../assets/Gifts_Website/1.png';
-import gift2 from '../assets/Gifts_Website/2.png';
-import gift3 from '../assets/Gifts_Website/3.png';
-import gift4 from '../assets/Gifts_Website/4.png';
-import gift5 from '../assets/Gifts_Website/5.png';
-import gift6 from '../assets/Gifts_Website/6.png';
-import gift7 from '../assets/Gifts_Website/7.png';
-import gift8 from '../assets/Gifts_Website/8.png';
-import gift9 from '../assets/Gifts_Website/9.png';
-import gift10 from '../assets/Gifts_Website/10.png';
-import gift11 from '../assets/Gifts_Website/11.png';
-
 const ProductDetailsPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
