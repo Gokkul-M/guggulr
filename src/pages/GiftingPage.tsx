@@ -744,5 +744,17 @@ const GiftingPage = () => {
     </div>
   );
 };
+useGLTF.preload(giftModel1);
+useGLTF.preload(giftModel2);
+useGLTF.preload(giftModel3);
+useGLTF.preload(giftModel4);
+useGLTF.preload(giftModel5);
+useGLTF.preload(giftModel6);
+useGLTF.preload(giftModel7);
+useGLTF.preload(giftModel8);
+useGLTF.preload(giftModel9);
+useGLTF.preload(giftModel10);
+useGLTF.preload(giftModel11);
 
 export default GiftingPage;
+
