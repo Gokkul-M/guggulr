@@ -3,16 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Star, Gift, Leaf, Truck, CheckCircle, Phone, Mail, MapPin, Clock, Send } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Marquee } from "../components/Marquee";
-import almonds from '../assets/products/Almonds.png';
-import cashew from '../assets/products/Whole Cashews.png';
-import mixed from '../assets/products/Mixed Dry fruits.png';
-import walnut from '../assets/products/Walnut (kernels).png';
-import pisco from '../assets/products/Pistachios.png';
-import pepper from '../assets/products/Pepper.png';
-import turmeric from '../assets/products/Turmeric Stick.png';
-import cardamom from '../assets/products/Wild Cardamom.png';
-import cinnamon from '../assets/products/Singapore Cinnamon.png';
-import saffron from '../assets/products/Saffron.png';
+
 import WhyChooseSection from "../components/bento-grid"
 import gift1 from "../assets/Gifts_Website/1.jpeg"
 import gift2 from "../assets/Gifts_Website/2.jpeg"
@@ -32,8 +23,45 @@ import InteractiveMap from "../components/InteractiveMap.tsx"
 import homebg from "../assets/home.jpeg"
 import gift from "../assets/gift-box.jpg"
 import date from "../assets/dates.jpg"
-import pistachios from "../assets/pistachios.jpg"
 
+const almonds = "https://res.cloudinary.com/dzqpsl10m/image/upload/v1756446182/Almonds_g5b12e.png";
+const blackDates = "https://res.cloudinary.com/dzqpsl10m/image/upload/v1756446126/Black_Dates_o3wxir.png";
+const blackRaisinsWithSeeds = "https://res.cloudinary.com/dzqpsl10m/image/upload/v1756446156/Black_Raisins_with_Seed_j9wuil.png";
+const brokenCashews = "https://res.cloudinary.com/dzqpsl10m/image/upload/v1756446158/Broken_Cashews_jiy2fb.png";
+const cakeSeeds = "https://res.cloudinary.com/dzqpsl10m/image/upload/v1756446161/Cake_Seeds_vknbdd.png";
+const cherry = "https://res.cloudinary.com/dzqpsl10m/image/upload/v1756446156/Cherry_jvmnhm.png";
+const chiaSeed = "https://res.cloudinary.com/dzqpsl10m/image/upload/v1756446153/Chia_seed_t87cyy.png"; 
+const driedAmla = "https://res.cloudinary.com/dzqpsl10m/image/upload/v1756446154/Dried_Amla_xnaskv.png";
+const dryDates = "https://res.cloudinary.com/dzqpsl10m/image/upload/v1756446155/Dry_Dates_ju2svk.png";
+const fennelSeeds = "https://res.cloudinary.com/dzqpsl10m/image/upload/v1756446157/Fennel_Seeds_ogrimo.png";
+const fenugreekSeeds = "https://res.cloudinary.com/dzqpsl10m/image/upload/v1756446157/Fenugreek_Seeds_kltpzy.png";
+const fig = "https://res.cloudinary.com/dzqpsl10m/image/upload/v1756446160/Fig_oxkbfb.png";
+const foxtailMillet = "https://res.cloudinary.com/dzqpsl10m/image/upload/v1756446163/foxtail_millet_mpsw6f.png";
+const greenRaisinsType1 = "https://res.cloudinary.com/dzqpsl10m/image/upload/v1756446160/Green_Raisins_Type_1_diqtrt.png";
+const kasuriMethi = "https://res.cloudinary.com/dzqpsl10m/image/upload/v1756446158/Kasuri_Methi_tzgchc.png";
+const kodoMillet = "https://res.cloudinary.com/dzqpsl10m/image/upload/v1756446166/Kodo_Millet_hmqiqy.png";
+const kokum = "https://res.cloudinary.com/dzqpsl10m/image/upload/v1756446159/Kokum_upjyl7.png";
+const masalaCashew = "https://res.cloudinary.com/dzqpsl10m/image/upload/v1756446169/Masala_Cashew_sptpyx.png";
+const mixed = "https://res.cloudinary.com/dzqpsl10m/image/upload/v1756446168/Mixed_Dry_fruits_swhyrs.png";
+const palmJaggery = "https://res.cloudinary.com/dzqpsl10m/image/upload/v1756446184/Palm_Jaggery_joqbc9.png";
+const pepper = "https://res.cloudinary.com/dzqpsl10m/image/upload/v1756446182/Pepper_nllsya.png";
+const pepperCashew = "https://res.cloudinary.com/dzqpsl10m/image/upload/v1756446180/Pepper_Cashew_emkhb1.png";
+const pistachios = "https://res.cloudinary.com/dzqpsl10m/image/upload/v1756446180/Pistachios_vbmcwp.png";
+const poppySeeds = "https://res.cloudinary.com/dzqpsl10m/image/upload/v1756446182/Poppy_Seeds_jo6us6.png";
+const pumpkinSeeds = "https://res.cloudinary.com/dzqpsl10m/image/upload/v1756446176/Pumpkin_Seeds_f2syic.png";
+const redRice = "https://res.cloudinary.com/dzqpsl10m/image/upload/v1756446116/Red_Rice_negikq.png";
+const saffron = "https://res.cloudinary.com/dzqpsl10m/image/upload/v1756446115/Saffron_ht2l9q.png";
+const saltCashew = "https://res.cloudinary.com/dzqpsl10m/image/upload/v1756446122/Salt_Cashew_ql0dnr.png";
+const cinnamon = "https://res.cloudinary.com/dzqpsl10m/image/upload/v1756446126/Singapore_Cinnamon_iw2hic.png";
+const sunflowerSeeds = "https://res.cloudinary.com/dzqpsl10m/image/upload/v1756446121/Sunflower_Seeds_fafsnz.png";
+const turmeric = "https://res.cloudinary.com/dzqpsl10m/image/upload/v1756446123/Turmeric_Stick_fv5qgb.png";
+const walnut = "https://res.cloudinary.com/dzqpsl10m/image/upload/v1756446118/Walnut_kernels_pqmee2.png";
+const walnutShell = "https://res.cloudinary.com/dzqpsl10m/image/upload/v1756446127/Walnut_Shell_tvdct8.png";
+const watermelonSeeds = "https://res.cloudinary.com/dzqpsl10m/image/upload/v1756446121/Watermelon_Seeds_buer5q.png";
+const whiteDates = "https://res.cloudinary.com/dzqpsl10m/image/upload/v1756446123/White_Dates_qp44im.png";
+const cashew = "https://res.cloudinary.com/dzqpsl10m/image/upload/v1756446133/Whole_Cashews_vrvkco.png";
+const cardamom = "https://res.cloudinary.com/dzqpsl10m/image/upload/v1756446131/Wild_Cardamom_a1rogu.png";
+const bambooRice = "https://res.cloudinary.com/dzqpsl10m/image/upload/v1756446188/Bamboo_Rice_kmg5oz.png";
 // Button Component (No changes, included for completeness)
 const Button = ({ children, className = "", variant = "default", size = "md", onClick, ...props }) => {
   const baseClasses = "inline-flex items-center justify-center font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2";
@@ -303,7 +331,7 @@ const InteractiveMarquee = () => {
 };
 
 const InteractiveGiftingMarquee = () => {
-  const giftImages = [almonds,cashew,mixed,walnut,pisco,pepper,turmeric,cardamom,cinnamon,saffron];
+  const giftImages = [almonds,cashew,mixed,walnut,pepper,turmeric,cardamom,cinnamon,saffron];
 
   const GiftImage = ({ src, index }) => (
     <motion.div
