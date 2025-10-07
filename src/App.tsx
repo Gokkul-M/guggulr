@@ -1,9 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Toaster } from '@/components/ui/toaster';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
 import { CategoryProvider } from '@/context/CategoryContext';
+import Layout from '@/components/Layout';
 import HomePage from '@/pages/HomePage';
 import ProductsPage from '@/pages/ProductsPage';
 import ProductDetailsPage from '@/pages/ProductDetailsPage';
@@ -17,23 +15,18 @@ function App() {
   return (
     <CategoryProvider>
       <Router>
-        <div>
-          <Navbar />
-          <main>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/products" element={<ProductsPage />} />
-              <Route path="/products/:id" element={<ProductDetailsPage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/gifting" element={<GiftingPage />} />
-              <Route path="/gifting/:id" element={<GiftDetailsPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="/quote" element={<QuotePage />} />
-            </Routes>
-          </main>
-          <Footer />
-          <Toaster />
-        </div>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/products" element={<ProductsPage />} />
+            <Route path="/products/:id" element={<ProductDetailsPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/gifting" element={<GiftingPage />} />
+            <Route path="/gifting/:id" element={<GiftDetailsPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/quote" element={<QuotePage />} />
+          </Routes>
+        </Layout>
       </Router>
     </CategoryProvider>
   );

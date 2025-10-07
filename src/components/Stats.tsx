@@ -1,0 +1,113 @@
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+
+const CountUpAnimation = ({ end, suffix = "", duration = 2 }) => {
+    const [count, setCount] = useState(0);
+    const [hasAnimated, setHasAnimated] = useState(false);
+
+    useEffect(() => {
+        if (hasAnimated) return;
+
+        const startTime = Date.now();
+
+        const timer = setInterval(() => {
+            const now = Date.now();
+            const progress = Math.min((now - startTime) / (duration * 1000), 1);
+
+            const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+            const currentCount = Math.floor(easeOutQuart * end);
+
+            setCount(currentCount);
+
+            if (progress === 1) {
+                clearInterval(timer);
+                setHasAnimated(true);
+            }
+        }, 16);
+
+        return () => clearInterval(timer);
+    }, [end, duration, hasAnimated]);
+
+    return <span>{count}{suffix}</span>;
+};
+
+const Stats = () => {
+    return (
+        <section className="py-12 sm:py-16 bg-white border-b border-gray-100">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+                    <motion.div
+                        className="text-center"
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6 }}
+                        viewport={{ once: true }}
+                    >
+                        <div className="mb-4">
+                            <motion.div
+                                className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-orange-600 mb-2"
+                                initial={{ opacity: 0 }}
+                                whileInView={{ opacity: 1 }}
+                                transition={{ duration: 1, delay: 0.2 }}
+                                viewport={{ once: true }}
+                            >
+                                <CountUpAnimation end={5000} suffix="+" duration={2} />
+                            </motion.div>
+                            <div className="text-base sm:text-lg font-semibold text-gray-800 mb-1">Happy Customers</div>
+                            <div className="text-sm text-gray-500">Satisfied clients worldwide</div>
+                        </div>
+                        <div className="w-16 h-1 bg-gradient-to-r from-orange-400 to-red-500 mx-auto rounded-full"></div>
+                    </motion.div>
+
+                    <motion.div
+                        className="text-center"
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.1 }}
+                        viewport={{ once: true }}
+                    >
+                        <div className="mb-4">
+                            <motion.div
+                                className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-orange-600 mb-2"
+                                initial={{ opacity: 0 }}
+                                whileInView={{ opacity: 1 }}
+                                transition={{ duration: 1, delay: 0.3 }}
+                                viewport={{ once: true }}
+                            >
+                                <CountUpAnimation end={100} suffix="%" duration={2} />
+                            </motion.div>
+                            <div className="text-base sm:text-lg font-semibold text-gray-800 mb-1">Natural Products</div>
+                            <div className="text-sm text-gray-500">Pure & preservative-free</div>
+                        </div>
+                        <div className="w-16 h-1 bg-gradient-to-r from-orange-400 to-red-500 mx-auto rounded-full"></div>
+                    </motion.div>
+
+                    <motion.div
+                        className="text-center"
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                        viewport={{ once: true }}
+                    >
+                        <div className="mb-4">
+                            <motion.div
+                                className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-orange-600 mb-2"
+                                initial={{ opacity: 0 }}
+                                whileInView={{ opacity: 1 }}
+                                transition={{ duration: 1, delay: 0.4 }}
+                                viewport={{ once: true }}
+                            >
+                                <CountUpAnimation end={24} suffix="hr" duration={2} />
+                            </motion.div>
+                            <div className="text-base sm:text-lg font-semibold text-gray-800 mb-1">Fresh Delivery</div>
+                            <div className="text-sm text-gray-500">Lightning-fast shipping</div>
+                        </div>
+                        <div className="w-16 h-1 bg-gradient-to-r from-orange-400 to-red-500 mx-auto rounded-full"></div>
+                    </motion.div>
+                </div>
+            </div>
+        </section>
+    );
+};
+
+export default Stats;
