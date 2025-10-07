@@ -109,7 +109,7 @@ const Contact = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 className="text-5xl md:text-6xl font-extrabold text-gray-900 mb-6 leading-tight justify-center text-center">
                     Contact{" "}
-                    <span className="bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent drop-shadow-sm">
+                    <span className="bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent drop-shadow-sm">
                         Us
                     </span>
                 </h2>
@@ -294,12 +294,6 @@ const Contact = () => {
                                 )}
                             </Button>
                         </form>
-                         <div className="mt-6 p-4 bg-amber-50 border border-amber-200 rounded-lg">
-        <p className="text-sm text-amber-800">
-          <strong>Setup Required:</strong> To enable email sending, please set up EmailJS with your Gmail account. 
-          Update the service ID, template ID, and public key in the code, then create an email template in your EmailJS dashboard.
-        </p>
-      </div>
                     </motion.div>
                 </div>
             </div>
