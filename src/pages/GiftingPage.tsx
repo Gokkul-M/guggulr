@@ -5,6 +5,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Environment } from '@react-three/drei';
 import { useNavigate } from 'react-router-dom';
 import { useGLTF } from "@react-three/drei";
+
 import giftModel1 from "../assets/3dmodel/1.glb";
 import giftModel2 from "../assets/3dmodel/2.glb";
 import giftModel3 from "../assets/3dmodel/3.glb";
@@ -28,6 +29,18 @@ import gift8 from '../assets/Gifts_Website/8.jpeg';
 import gift9 from '../assets/Gifts_Website/9.jpeg';
 import gift10 from '../assets/Gifts_Website/10.jpeg';
 import gift11 from '../assets/Gifts_Website/11.jpeg';
+import gift12 from '../assets/Gifts_Website/12.jpeg';
+import gift13 from '../assets/Gifts_Website/13.jpeg';
+import gift14 from '../assets/Gifts_Website/14.jpeg';
+import gift15 from '../assets/Gifts_Website/15.jpeg';
+import gift16 from '../assets/Gifts_Website/16.jpeg';
+import gift17 from '../assets/Gifts_Website/17.jpeg';
+import gift18 from '../assets/Gifts_Website/18.jpeg';
+import gift19 from '../assets/Gifts_Website/19.jpeg';
+import gift20 from '../assets/Gifts_Website/20.jpeg';
+import gift21 from '../assets/Gifts_Website/21.jpeg';
+import gift22 from '../assets/Gifts_Website/22.jpeg';
+
 
 function FallbackBox() {
   return (
@@ -58,6 +71,17 @@ const PersonalGiftModel8 = makeModelComponent(giftModel8, 1.2);
 const PersonalGiftModel9 = makeModelComponent(giftModel9, 1.2);
 const PersonalGiftModel10 = makeModelComponent(giftModel10, 1.2);
 const WeddingGiftModel11 = makeModelComponent(giftModel11, 1.2);
+const GiftModel12 = makeModelComponent(giftModel11, 1.2);
+const GiftModel13 = makeModelComponent(giftModel10, 1.2);
+const GiftModel14 = makeModelComponent(giftModel9, 1.2);
+const GiftModel15 = makeModelComponent(giftModel8, 1.2);
+const GiftModel16 = makeModelComponent(giftModel7, 1.2);
+const GiftModel17 = makeModelComponent(giftModel6, 1.2);
+const GiftModel18 = makeModelComponent(giftModel5, 1.2);
+const GiftModel19 = makeModelComponent(giftModel4, 1.2);
+const GiftModel20 = makeModelComponent(giftModel3, 1.2);
+const GiftModel21 = makeModelComponent(giftModel2, 1.2);
+const GiftModel22 = makeModelComponent(giftModel1, 1.2);
 
 // Map productId to the correct component
 const modelComponents: Record<number, React.FC> = {
@@ -72,6 +96,17 @@ const modelComponents: Record<number, React.FC> = {
   9: PersonalGiftModel9,
   10: PersonalGiftModel10,
   11: WeddingGiftModel11,
+  12: GiftModel12,
+  13: GiftModel13,
+  14: GiftModel14,
+  15: GiftModel15,
+  16: GiftModel16,
+  17: GiftModel17,
+  18: GiftModel18,
+  19: GiftModel19,
+  20: GiftModel20,
+  21: GiftModel21,
+  22: GiftModel22,
 };
 
 // ✅ Main component
@@ -96,9 +131,9 @@ const GiftingPage = () => {
   const [is3DModalOpen, setIs3DModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [displayedCount, setDisplayedCount] = useState({
-    corporate: 2,
-    personal: 2,
-    wedding: 2
+    corporate: 3,
+    personal: 4,
+    wedding: 4
   });
   const navigate = useNavigate();
 
@@ -112,7 +147,6 @@ const GiftingPage = () => {
           name: "Executive Premium Box", 
           tagline: "Luxury nuts and dried fruits collection",
           image: gift1,
-         
           description: "Premium corporate gift box featuring hand-selected nuts, exotic dry fruits, and gourmet treats perfect for business relationships.",
           rating: 4.9,
           featured: true,
@@ -123,7 +157,6 @@ const GiftingPage = () => {
           name: "Corporate Wellness Pack", 
           tagline: "Healthy snacking for the workplace",
           image: gift2,
-         
           description: "Health-focused gift collection promoting wellness in the workplace with nutritious snacks and premium ingredients.",
           rating: 4.7,
           featured: false,
@@ -134,7 +167,6 @@ const GiftingPage = () => {
           name: "Holiday Special", 
           tagline: "Festive premium gift collection",
           image: gift3,
-         
           description: "Celebrate the holiday season with this festive collection of premium nuts, spices, and seasonal delights.",
           rating: 4.8,
           featured: false,
@@ -145,13 +177,31 @@ const GiftingPage = () => {
           name: "Golden Bloom Hamper", 
           tagline: "Team Spirit Treats",
           image: gift4,
-          
           description: "A radiant hamper filled with golden delights, blooming with richness and joy.",
           rating: 4.8,
           featured: true,
           luxury: false
         },
-        
+        {
+          id: 12,
+          name: "Elite Partner Pack",
+          tagline: "Building Bonds Through Taste",
+          image: gift12,
+          description: "A classy ensemble of gourmet delights crafted for corporate partnerships and festive appreciation.",
+          rating: 4.6,
+          featured: false,
+          luxury: true
+        },
+        {
+          id: 13,
+          name: "Ambassador Collection",
+          tagline: "Refined Gifting, Redefined",
+          image: gift13,
+          description: "An elegant combination of fine treats and luxurious packaging that speaks professionalism and grace.",
+          rating: 4.9,
+          featured: true,
+          luxury: true
+        },
       ]
     },
     personal: {
@@ -163,7 +213,6 @@ const GiftingPage = () => {
           name: "Pearl Elegance Basket", 
           tagline: "Celebrate with Festive Flavors",
           image: gift5,
-          
           description: "A basket of timeless elegance, adorned with pearl-inspired charm and luxury treats.",
           rating: 4.8,
           featured: false,
@@ -174,7 +223,6 @@ const GiftingPage = () => {
           name: "Royal Trio Hamper", 
           tagline: "Birthday Bliss Delivered",
           image: gift6,
-         
           description: "A majestic trio of delights, curated for those who cherish royal indulgence.",
           rating: 4.8,
           featured: false,
@@ -185,7 +233,6 @@ const GiftingPage = () => {
           name: "Rose Delight Hamper", 
           tagline: "Togetherness in Every Bite",
           image: gift7,
-         
           description: "A fragrant hamper inspired by roses, crafted for sweet and elegant gifting.",
           rating: 4.8,
           featured: true,
@@ -196,10 +243,39 @@ const GiftingPage = () => {
           name: "Pearl Purse Pack", 
           tagline: "Love Wrapped in Luxury",
           image: gift8,
-         
           description: "A stylish pearl-inspired purse pack designed for chic gifting moments.",
           rating: 4.6,
           featured: false,
+          luxury: false
+        },
+        {
+          id: 14,
+          name: "Serene Blush Hamper",
+          tagline: "Moments of Calm & Joy",
+          image: gift14,
+          description: "Soft pastel tones and a soothing mix of goodies that make every moment more delightful.",
+          rating: 4.7,
+          featured: false,
+          luxury: true
+        },
+        {
+          id: 15,
+          name: "Midnight Treat Box",
+          tagline: "For Sweet Late-Night Cravings",
+          image: gift15,
+          description: "Perfect for cozy nights in, featuring chocolates, snacks, and a touch of indulgence.",
+          rating: 4.8,
+          featured: true,
+          luxury: false
+        },
+        {
+          id: 16,
+          name: "Aurora Gift Bag",
+          tagline: "Bright Smiles in Every Unwrap",
+          image: gift16,
+          description: "Vibrant and cheerful, this hamper brings color and happiness to every occasion.",
+          rating: 4.9,
+          featured: true,
           luxury: false
         },
       ]
@@ -213,7 +289,6 @@ const GiftingPage = () => {
           name: "Golden Leaf Delight",
           tagline: "Birthday Bliss Delivered",
           image: gift9,
-         
           description: "A golden-leaf inspired delight that brings charm and festive richness.",
           rating: 4.4,
           featured: false,
@@ -224,8 +299,7 @@ const GiftingPage = () => {
           name: "Lavender Bliss Hamper", 
           tagline: "Luxurious treats for the happy couple",
           image: gift10,
-         
-          description: "A golden-leaf inspired delight that brings charm and festive richness.",
+          description: "A lavender-inspired premium gift box with elegance and aroma for wedding celebrations.",
           rating: 4.4,
           featured: false,
           luxury: true
@@ -235,16 +309,75 @@ const GiftingPage = () => {
           name: "Golden Pearl Delight", 
           tagline: "Professional excellence in gifting",
           image: gift11,
-         
           description: "A radiant fusion of golden elegance and pearl charm crafted to impress.",
           rating: 4.8,
           featured: false,
           luxury: true
         },
+        {
+          id: 17,
+          name: "Royal Heritage Box",
+          tagline: "Grace and Grandeur Combined",
+          image: gift17,
+          description: "An exquisite box designed for regal celebrations, filled with gold-toned delicacies.",
+          rating: 4.9,
+          featured: true,
+          luxury: true
+        },
+        {
+          id: 18,
+          name: "Ivory Bloom Set",
+          tagline: "Cherished Beginnings, Beautifully Wrapped",
+          image: gift18,
+          description: "Delicate ivory packaging and gourmet selections for newlyweds and anniversaries.",
+          rating: 4.7,
+          featured: false,
+          luxury: true
+        },
+        {
+          id: 19,
+          name: "Opulent Charm Box",
+          tagline: "Luxury that Lasts Forever",
+          image: gift19,
+          description: "An elegant blend of gold accents and artisan treats for unforgettable gifting.",
+          rating: 4.8,
+          featured: true,
+          luxury: true
+        },
+        {
+          id: 20,
+          name: "Floral Fantasy Hamper",
+          tagline: "Blossoms, Chocolates & Joy",
+          image: gift20,
+          description: "A flower-inspired curation that celebrates love and happiness with delicate beauty.",
+          rating: 4.6,
+          featured: false,
+          luxury: false
+        },
+        {
+          id: 21,
+          name: "Celestial Couple Box",
+          tagline: "Love Written in the Stars",
+          image: gift21,
+          description: "Heavenly design and gourmet selections crafted to honor everlasting love.",
+          rating: 4.9,
+          featured: true,
+          luxury: true
+        },
+        {
+          id: 22,
+          name: "Eternal Gold Basket",
+          tagline: "Luxury Wrapped in Golden Touch",
+          image: gift22,
+          description: "A grand golden basket that signifies prosperity, togetherness, and love.",
+          rating: 4.9,
+          featured: true,
+          luxury: true
+        },
       ]
     }
   };
-
+  
   const features = [
     {
       icon: <Package className="w-8 h-8 text-orange-500" />,
@@ -262,7 +395,7 @@ const GiftingPage = () => {
       description: "100% satisfaction guarantee on all gift orders"
     }
   ];
-
+  
   // Get current products based on displayed count
   const currentProducts = giftCategories[selectedCategory as keyof typeof giftCategories].products
     .slice(0, displayedCount[selectedCategory as keyof typeof displayedCount]);
