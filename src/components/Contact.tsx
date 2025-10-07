@@ -1,6 +1,9 @@
-import React from 'react';
+
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Phone, Mail, MapPin, Clock, Send } from 'lucide-react';
+import { useToast } from '../components/ui/use-toast';
+import emailjs from '@emailjs/browser';
 
 const Button = ({ children, className = "", variant = "default", size = "md", onClick, ...props }) => {
     const baseClasses = "inline-flex items-center justify-center font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2";
@@ -30,6 +33,75 @@ const Button = ({ children, className = "", variant = "default", size = "md", on
 
 
 const Contact = () => {
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: ''
+    });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const { toast } = useToast();
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+            toast({
+                title: "Missing Information",
+                description: "Please fill in all required fields.",
+                variant: "destructive"
+            });
+            return;
+        }
+
+        setIsSubmitting(true);
+
+        try {
+            const serviceId = 'YOUR_SERVICE_ID'; // Replace with your EmailJS service ID
+            const templateId = 'YOUR_TEMPLATE_ID'; // Replace with your EmailJS template ID
+            const publicKey = 'YOUR_PUBLIC_KEY'; // Replace with your EmailJS public key
+
+            const templateParams = {
+                to_email: 'enquiry.guggulr@gmail.com',
+                from_name: formData.name,
+                from_email: formData.email,
+                phone: formData.phone,
+                subject: formData.subject,
+                message: formData.message
+            };
+
+            await emailjs.send(serviceId, templateId, templateParams, publicKey);
+
+            toast({
+                title: "Message Sent!",
+                description: "Thank you for contacting us. We'll get back to you shortly.",
+            });
+
+            setFormData({
+                name: '',
+                email: '',
+                phone: '',
+                subject: '',
+                message: ''
+            });
+        } catch (error) {
+            console.error('Failed to send email:', error);
+            toast({
+                title: "Error Sending Message",
+                description: "There was a problem sending your message. Please try again or contact us directly.",
+                variant: "destructive"
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
     return (
         <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-white text-black">
             <div className="absolute -top-20 -left-20 w-72 h-72 bg-orange-400/30 rounded-full blur-3xl"></div>
@@ -122,7 +194,7 @@ const Contact = () => {
                             Send us a Message
                         </h3>
 
-                        <form className="space-y-4 sm:space-y-6">
+                        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                                 <div>
                                     <label className="block text-sm font-medium text-black/80 mb-2">
@@ -131,6 +203,8 @@ const Contact = () => {
                                     <input
                                         type="text"
                                         name="name"
+                                        value={formData.name}
+                                        onChange={handleInputChange}
                                         required
                                         className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base rounded-lg bg-white/10 border border-white/20 text-black placeholder-black/50 focus:outline-none focus:ring-2 focus:ring-orange-500 transition"
                                         placeholder="Your name"
@@ -144,6 +218,8 @@ const Contact = () => {
                                     <input
                                         type="tel"
                                         name="phone"
+                                        value={formData.phone}
+                                        onChange={handleInputChange}
                                         className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base rounded-lg bg-white/10 border border-white/20 text-black placeholder-black/50 focus:outline-none focus:ring-2 focus:ring-orange-500 transition"
                                         placeholder="Your phone number"
                                     />
@@ -157,6 +233,8 @@ const Contact = () => {
                                 <input
                                     type="email"
                                     name="email"
+                                    value={formData.email}
+                                    onChange={handleInputChange}
                                     required
                                     className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base rounded-lg bg-white/10 border border-white/20 text-black placeholder-black/50 focus:outline-none focus:ring-2 focus:ring-orange-500 transition"
                                     placeholder="your.email@example.com"
@@ -169,6 +247,8 @@ const Contact = () => {
                                 </label>
                                 <select
                                     name="subject"
+                                    value={formData.subject}
+                                    onChange={handleInputChange}
                                     required
                                     className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base rounded-lg bg-white/10 border border-white/20 text-black focus:outline-none focus:ring-2 focus:ring-orange-500 transition"
                                 >
@@ -187,6 +267,8 @@ const Contact = () => {
                                 </label>
                                 <textarea
                                     name="message"
+                                    value={formData.message}
+                                    onChange={handleInputChange}
                                     required
                                     rows={5}
                                     className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base rounded-lg bg-white/10 border border-white/20 text-black placeholder-black/50 focus:outline-none focus:ring-2 focus:ring-orange-500 transition resize-none"
@@ -196,12 +278,28 @@ const Contact = () => {
 
                             <Button
                                 type="submit"
+                                disabled={isSubmitting}
                                 className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white py-3 sm:py-4 text-sm sm:text-base font-medium rounded-lg transition-all duration-300 hover:shadow-lg"
                             >
-                                <Send className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                                Send Message
+                                {isSubmitting ? (
+                                    <div className="flex items-center">
+                                        <div className="w-4 h-4 mr-2 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                        Sending...
+                                    </div>
+                                ) : (
+                                    <>
+                                        <Send className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                                        Send Message
+                                    </>
+                                )}
                             </Button>
                         </form>
+                         <div className="mt-6 p-4 bg-amber-50 border border-amber-200 rounded-lg">
+        <p className="text-sm text-amber-800">
+          <strong>Setup Required:</strong> To enable email sending, please set up EmailJS with your Gmail account. 
+          Update the service ID, template ID, and public key in the code, then create an email template in your EmailJS dashboard.
+        </p>
+      </div>
                     </motion.div>
                 </div>
             </div>

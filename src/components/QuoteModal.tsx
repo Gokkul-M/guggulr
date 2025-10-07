@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
+import emailjs from '@emailjs/browser';
 
 const QuoteModal = ({ isOpen, onClose, product }) => {
   const [formData, setFormData] = useState({
@@ -12,6 +13,7 @@ const QuoteModal = ({ isOpen, onClose, product }) => {
     quantity: '10',
     message: `I'm interested in a quote for ${product.name}.`
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
   const handleInputChange = (e) => {
@@ -19,7 +21,7 @@ const QuoteModal = ({ isOpen, onClose, product }) => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.quantity) {
       toast({
@@ -28,22 +30,42 @@ const QuoteModal = ({ isOpen, onClose, product }) => {
       });
       return;
     }
-    
-    const quoteRequests = JSON.parse(localStorage.getItem('quoteRequests') || '[]');
-    const newRequest = {
-      ...formData,
-      productName: product.name,
-      id: Date.now(),
-      timestamp: new Date().toISOString()
-    };
-    quoteRequests.push(newRequest);
-    localStorage.setItem('quoteRequests', JSON.stringify(quoteRequests));
 
-    toast({
-      title: "Quote Request Sent!",
-      description: "We've received your request and will get back to you shortly."
-    });
-    onClose();
+    setIsSubmitting(true);
+
+    try {
+        const serviceId = 'YOUR_SERVICE_ID'; // Replace with your EmailJS service ID
+        const templateId = 'YOUR_TEMPLATE_ID'; // Replace with your EmailJS template ID
+        const publicKey = 'YOUR_PUBLIC_KEY'; // Replace with your EmailJS public key
+
+        const templateParams = {
+            to_email: 'enquiry.guggulr@gmail.com',
+            from_name: formData.name,
+            from_email: formData.email,
+            company: formData.company,
+            quantity: formData.quantity,
+            message: formData.message,
+            product_name: product.name,
+            subject: `Quote Request for ${product.name}`
+        };
+
+        await emailjs.send(serviceId, templateId, templateParams, publicKey);
+
+        toast({
+            title: "Quote Request Sent!",
+            description: "We've received your request and will get back to you shortly."
+        });
+        onClose();
+    } catch (error) {
+        console.error('Failed to send email:', error);
+        toast({
+            title: "Error Sending Request",
+            description: "There was a problem sending your request. Please try again or contact us directly.",
+            variant: "destructive"
+        });
+    } finally {
+        setIsSubmitting(false);
+    }
   };
 
   const backdropVariants = {
@@ -126,12 +148,28 @@ const QuoteModal = ({ isOpen, onClose, product }) => {
               <Button
                 type="submit"
                 size="lg"
+                disabled={isSubmitting}
                 className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white py-3"
               >
-                <Send className="w-5 h-5 mr-2" />
-                Submit Request
+                {isSubmitting ? (
+                    <div className="flex items-center">
+                        <div className="w-4 h-4 mr-2 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                        Sending...
+                    </div>
+                ) : (
+                    <>
+                        <Send className="w-5 h-5 mr-2" />
+                        Submit Request
+                    </>
+                )}
               </Button>
             </form>
+             <div className="mt-6 p-4 bg-amber-50 border border-amber-200 rounded-lg">
+        <p className="text-sm text-amber-800">
+          <strong>Setup Required:</strong> To enable email sending, please set up EmailJS with your Gmail account. 
+          Update the service ID, template ID, and public key in the code, then create an email template in your EmailJS dashboard.
+        </p>
+      </div>
           </motion.div>
         </motion.div>
       )}
